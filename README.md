@@ -29,7 +29,7 @@ We can see the figure using this nootebook:
 open jupytor nootebook
 - Exploratory Data Analysis.ipynb
 ```
-![eda_sample](../ObjectDetection/images/eda_example.png "eda sample")
+![eda_sample](https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png)
 Fig.1 An example od exploratory data analysis. 
 
 the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but we don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe.

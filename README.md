@@ -63,6 +63,8 @@ This result is not good. The loss is greater than 10 and we want to improve this
 ### Data Augmentation
 We apply data augmentation and train again. This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
 
+<img="https://github.com/n-kamata/ObjectDetection/blob/master/images/da_example.png", width=10>
+
 Data augmentation is in Fig. 2. Compareing with Fig. 1, we can understand the difference.
 
 ![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png)

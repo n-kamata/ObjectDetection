@@ -64,12 +64,15 @@ This result is not good. The loss is greater than 10 and we want to improve this
 We apply data augmentation and train again. This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/da_example.png" width="400">
+Fig2. Data augmentation result.
 
 Data augmentation is in Fig. 2. Compareing with Fig. 1, we can understand the difference.
 
-<img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png" width="400>
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png" width="400">
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/lr.png" width="400">
+
+Even if we add the data augmentation loss is still learge. Next, we tried change optimizer.
 
 ### Optimizer and learningrate
 ![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/loss.png)

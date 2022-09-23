@@ -34,25 +34,44 @@ Fig.1 An example od exploratory data analysis.
 
 the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but we don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe.
 
-
-### Model and setting
-
 ## Experiments
-
-The experiments folder will be organized as follow:
+### Overview
+We choose reference model. We have change config and train/eval. The results are saved in this file structure:
 
 ```
 experiments/
     - pretrained_model/
     - exporter_main_v2.py - to create an inference model
     - model_main_tf2.py - to launch training
-    - reference/ - reference training with the unchanged config file
-    - ex1/ - folder for each experiment we run
-    - ex2/ - folder for each experiment we run
-    - ex3/ - folder for each experiment we run
+    - reference/ - reference training result with the unchanged config file
+    - ex1/ - Improved config and result (Added data augmentation)
+    - ex2/ - Improved config and result (Changed optimiser)
+    - ex3/ - Improved config and result (Changed optimizer parameters
     - label_map.pbtxt
     ...
 ```
+
+### Reference model
+For this project, we decided to use SSD Resnet 50 as a baseline to make it easy to
+study how to improve model. 
+
+```
+python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config
+```
+This result is not good. The loss is greater than 10 and we want to improve this. Fist, we tried data augmentation to improve learing efficiency and avoid overfitting.
+
+### Data Augmentation
+We apply data augmentation and train again.
+
+![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png)
+![ex1_result2](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/lr.png)
+
+### Optimizer and learningrate
+![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/loss.png)
+![ex1_result2](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/lr.png)
+
+![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/loss.png)
+![ex1_result2](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/rl.png)
 
 ### Cross validation
 

@@ -116,32 +116,13 @@ Taking this result into account, optimizer algorithm gets better, because even i
 
 We restrict learing rate at begining og epoch, loss is restricted and it keeps around 1.0.
 
-* experiment with the architecture. The Tf Object Detection API [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) offers many architectures. Keep in mind that the `pipeline.config` file is unique for each architecture and you will have to edit it.
+I do not have experiment using different architectuire from SSD, but we can try more using SSD.
+- Increase the number of data
+- Vary of scene data
+- Vary of classes
+- Optimization, cross validation
+- others
 
-You will now launch your very first experiment with the Tensorflow object detection API. Move the `pipeline_new.config` to the `/home/workspace/experiments/reference` folder. Now launch the training process:
-* a training process:
-```
-python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config
-```
-Once the training is finished, launch the evaluation process:
-* an evaluation process:
-```
-python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config --checkpoint_dir=experiments/reference/
-```
-
-To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir experiments/reference/`. You will report your findings in the writeup.
-
-
-#### Creating an animation
-
-Export training models.
-
-```
-python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/reference/ --output_directory experiments/reference/exported/
-```
-
-Finaly, our project result animation can be created by this.
-
-```
-python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path /data/waymo/testing/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
-```
+#### Animation
+This is a result of trained SSD.
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/animation.gif" width="400">

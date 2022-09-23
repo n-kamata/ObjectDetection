@@ -117,6 +117,11 @@ We choose loss as metrics, and set target total loss 1.0 or less.
 #### Apply data Augmentation
 We apply data augmentation and train again. This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
 
+```
+open jupytor nootebook
+- Exploratory Data Analysis.ipynb
+```
+
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/da_example.png" width="400">
 Fig2. Data augmentation result.
 
@@ -156,16 +161,17 @@ Next we adjust parameter about learing rate with RMS.
 INFO:tensorflow:    + Loss/total_loss: 1.118462
 ```
 
-We restrict learing rate at begining og epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
+We restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
 
 I do not have experiment using different architectuire other than SSD, but we can try more using SSD.
 - Increase the number of data
-- Vary of scene data
-- Vary of classes
-- Optimization, cross validation
-- others
+- Increase the number of scene data types
+- Increase the number of class types
+- Use different optimization
+- Use cross-validation
+- Others
 
-#### Animation
+### Inference result
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/animation.gif" width="400">
 This is a result of trained SSD. Object detecter developed by this project can work in night.

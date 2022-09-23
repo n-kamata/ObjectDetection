@@ -72,11 +72,14 @@ Data augmentation is in Fig. 2. Compareing with Fig. 1, we can understand the di
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/lr.png" width="400">
 
-Even if we add the data augmentation loss is still learge. Next, we tried change optimizer.
+Even if we apply the data augmentation loss is still learge. Next, we tried change optimizer.
 
 ### Optimizer and learningrate
-![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/loss.png)
-![ex1_result2](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/lr.png)
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/loss.png" width="400">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/lr.png" width="400">
+
+Taking this result into account, optimizer algorithm gets better, because even if , RMS loss is better than Ada loss. Next we adjust parameter about learing rate with RMS.
 
 ![ex1_result](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/loss.png)
 ![ex1_result2](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/rl.png)

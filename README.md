@@ -34,7 +34,6 @@ We can see the figure using this nootebook:
 open jupytor nootebook
 - Exploratory Data Analysis.ipynb
 ```
-![eda_sample](https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png)
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png" width="400">
 Fig.1 An example od exploratory data analysis. 

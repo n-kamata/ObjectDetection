@@ -1,1 +1,46 @@
-data:
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.056
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.114
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.051
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.017
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.228
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.250
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.013
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.061
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.092
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.044
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.303
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.319
+INFO:tensorflow:Eval metrics at step 2500
+I0922 19:23:13.952897 139744877057792 model_lib_v2.py:988] Eval metrics at step 2500
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP: 0.055798
+I0922 19:23:13.961467 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP: 0.055798
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP@.50IOU: 0.114232
+I0922 19:23:13.962975 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP@.50IOU: 0.114232
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP@.75IOU: 0.051237
+I0922 19:23:13.964554 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP@.75IOU: 0.051237
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP (small): 0.016653
+I0922 19:23:13.965960 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP (small): 0.016653
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP (medium): 0.228159
+I0922 19:23:13.967380 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP (medium): 0.228159
+INFO:tensorflow:    + DetectionBoxes_Precision/mAP (large): 0.250168
+I0922 19:23:13.968892 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Precision/mAP (large): 0.250168
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@1: 0.012680
+I0922 19:23:13.970298 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@1: 0.012680
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@10: 0.060679
+I0922 19:23:13.972195 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@10: 0.060679
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@100: 0.091674
+I0922 19:23:13.973766 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@100: 0.091674
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@100 (small): 0.044087
+I0922 19:23:13.975563 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@100 (small): 0.044087
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@100 (medium): 0.302827
+I0922 19:23:13.977221 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@100 (medium): 0.302827
+INFO:tensorflow:    + DetectionBoxes_Recall/AR@100 (large): 0.319000
+I0922 19:23:13.978987 139744877057792 model_lib_v2.py:991]  + DetectionBoxes_Recall/AR@100 (large): 0.319000
+INFO:tensorflow:    + Loss/localization_loss: 0.564275
+I0922 19:23:13.980393 139744877057792 model_lib_v2.py:991]  + Loss/localization_loss: 0.564275
+INFO:tensorflow:    + Loss/classification_loss: 0.307815
+I0922 19:23:13.981690 139744877057792 model_lib_v2.py:991]  + Loss/classification_loss: 0.307815
+INFO:tensorflow:    + Loss/regularization_loss: 0.246372
+I0922 19:23:13.982991 139744877057792 model_lib_v2.py:991]  + Loss/regularization_loss: 0.246372
+INFO:tensorflow:    + Loss/total_loss: 1.118462
+I0922 19:23:13.984392 139744877057792 model_lib_v2.py:991]  + Loss/total_loss: 1.118462

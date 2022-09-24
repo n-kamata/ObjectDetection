@@ -151,21 +151,52 @@ Data augmentation is in Fig. 2. Compareing with Fig. 1, we can understand the di
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/lr.png" width="400">
 
-Even if we apply the data augmentation loss is still learge. 
-
 ```
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+INFO:tensorflow:    + Loss/localization_loss: 1.179318
+INFO:tensorflow:    + Loss/classification_loss: 0.774768
+INFO:tensorflow:    + Loss/regularization_loss: 5.014042
 INFO:tensorflow:    + Loss/total_loss: 6.968129
 ```
+Even if we apply the data augmentation loss is still large. mAP and recall can be improved.
 
 Next, we tried change optimizer.
 
 #### Optimizer and learning rate
-* experiment with the optimizer: type of optimizer, learning rate, scheduler etc
+The following is a result using RMS optimizer instead of Ada optimizer.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/loss.png" width="400">
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex2_rms/lr.png" width="400">
 
+The detail of result is here.
+
 ```
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.008
+Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.023
+Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.004
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.001
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.039
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.027
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.004
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.016
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.038
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.012
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.165
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.125
+INFO:tensorflow:    + Loss/localization_loss: 0.811599
+INFO:tensorflow:    + Loss/classification_loss: 0.522778
+INFO:tensorflow:    + Loss/regularization_loss: 0.303872
 INFO:tensorflow:    + Loss/total_loss: 1.638250
 ```
 
@@ -177,22 +208,49 @@ Next we adjust parameter about learing rate with RMS.
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/rl.png" width="400">
 
-```
-INFO:tensorflow:    + Loss/total_loss: 1.118462
-```
+The detail of result is here.
 
-To check the detail, we share figures in Tensorboard. 
+```
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.056
+Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.114
+Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.051
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.017
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.228
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.250
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.013
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.061
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.092
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.044
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.303
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.319
+INFO:tensorflow:Eval metrics at step 2500
+INFO:tensorflow:    + Loss/localization_loss: 0.564275
+INFO:tensorflow:    + Loss/classification_loss: 0.307815
+INFO:tensorflow:    + Loss/regularization_loss: 0.246372
+INFO:tensorflow:    + Loss/total_loss: 1.118462
+ ```
+
+To check the detail, we also share figures in Tensorboard. 
 
 This figure shows that mAP result. This process was executed in workspace which Udacity provided and we wasn't able to plot mAP curve. [Issue report](https://knowledge.udacity.com/questions/802296)
-<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_precision.png" width="400">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_precision.png" width="800">
 
 The following shows recall result, but we also wasn't able to plot recall curve.
-<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_recall.png" width="400">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_recall.png" width="800">
+
+It is difficult to analyze figures, but mAP of ex3 is better than ex2 at 2500 step result in text data. In terms of recall, ex3 result is better than ex2.
 
 The following shows loss. 
-<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_loss.png" width="400">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_loss.png" width="800">
+
+For the training loss, both localization and classification loss can converge.
 
 We restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
+
+(TODO): Is the default model overfitting?
 
 I do not have experiment using different architectuire other than SSD, but we can try more using SSD.
 - Increase the number of data

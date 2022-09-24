@@ -139,7 +139,50 @@ This project strategy is like this.
 We choose loss as metrics, and set target total loss 1.0 or less.
 
 #### Apply data Augmentation
-We apply data augmentation and train again. This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
+We apply data augmentation and train again. The default model uses `random_horizontal_flip` and `random_crop_image`, but this augmentation cannot modify original image and this result is as same as default images. We applied these data arugments. This project uses Tf Object Detection API, we can use [preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto) to add data augmentation. What we actually implemented is to modify `pipeline_new.config` file. The following is code we add to the file. We assumed that Augmentaion about color and black patch are necessary to improve the model.
+
+```
+  data_augmentation_options {
+    random_horizontal_flip {
+    }
+  }
+  data_augmentation_options {
+    random_rgb_to_gray {
+    }
+  }
+  data_augmentation_options {
+    random_distort_color {
+    }
+  }
+  data_augmentation_options {
+    random_adjust_brightness {
+    }
+  }
+  data_augmentation_options {
+    random_adjust_contrast {
+    }
+  }
+  data_augmentation_options {
+    random_adjust_hue {
+    }
+  }
+  data_augmentation_options {
+    random_adjust_saturation {
+    }
+  }
+  data_augmentation_options {
+    random_black_patches{
+    }
+  }
+  data_augmentation_options {
+    random_image_scale {
+      min_scale_ratio: 0.5
+      max_scale_ratio: 1.5
+    }
+  }
+```
+
+This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
 
 ```
 open jupytor nootebook

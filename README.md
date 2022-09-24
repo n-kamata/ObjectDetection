@@ -181,6 +181,17 @@ Next we adjust parameter about learing rate with RMS.
 INFO:tensorflow:    + Loss/total_loss: 1.118462
 ```
 
+To check the detail, we share figures in Tensorboard. 
+
+This figure shows that mAP result. This process was executed in workspace which Udacity provided and we wasn't able to plot mAP curve. [Issue report](https://knowledge.udacity.com/questions/802296)
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_precision.png" width="400">
+
+The following shows recall result, but we also wasn't able to plot recall curve.
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_recall.png" width="400">
+
+The following shows loss. 
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_loss.png" width="400">
+
 We restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
 
 I do not have experiment using different architectuire other than SSD, but we can try more using SSD.

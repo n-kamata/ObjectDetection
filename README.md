@@ -124,17 +124,11 @@ Cross validation is a method to separate dataset for train and evaluation, and m
 
 I choose reference model. I have change config and train/eval. The results are saved in this file structure:
 
-### Reference experiment
+### Improve on the reference
 For this project, I decided to use SSD Resnet 50 as a baseline to make it easy to
 study how to improve model. 
 
 This result of baseline is not good. The loss is greater than 10 and I want to improve this.
-
-I guess that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
-
- Fist, I tried data augmentation to improve learing efficiency and avoid overfitting. Next, I adjested leaning rate annealing.
-
-### Improve on the reference
 
 The following is a result of defaut model used as reference.
 ```
@@ -156,11 +150,19 @@ INFO:tensorflow:    + Loss/regularization_loss: 47.339748
 INFO:tensorflow:    + Loss/total_loss: 49.041794
 ```
 
-mAP, recall, and loss of default model is not enough for SDC project. In this project, I improved default model using following method.
-- Data aurmentation
-- Learning rate annealing
 
-I choose loss as metrics, and set target total loss 1.0 or less.
+The graph to show the detail is the following.
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_precision.png" width="800">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_recall.png" width="800">
+
+<img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_loss.png" width="800">
+
+mAP, recall, and loss of default model were not enough for SDC project. I guessed that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
+
+Fist, I tried data augmentation to improve learing efficiency and avoid overfitting. Next, I adjested leaning rate annealing.
+
+I choose loss as metrics to adjust model, and set target total loss 1.0 or less.
 
 #### Apply data Augmentation
 

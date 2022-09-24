@@ -109,9 +109,12 @@ open jupytor nootebook
 ```
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png" width="400">
-Fig.1 An example od exploratory data analysis. 
+Fig.1 An example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrien (green), and cyclist (blue).
 
-the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but we don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe.
+the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but we don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, we can say about dataset:
+- Environment: Datasets icludes freeway, city, subburbe, and so on. Data balance looks good.
+- Weather: Datasets icludes day/night/foggy/rainy scenario. It is rarely to take data in bad weather condition, but we want enough data to make model robust. 
+- Classes: There are many object on road, we need not only vehicle/pedestrien/cyclist but also bus/truck/motorbcycle, and so on. We also want more data about cyclist. 
 
 ### Cross validation
 

@@ -29,8 +29,28 @@ We use jupyter nootebook to visualize our analisys and test result with with Fir
 
 ```
 jupyter notebook --port 3002 --ip=0.0.0.0 --allow-root
-
 ```
+
+### Development environment (Dependancy)
+The follwing is a list of the environment (dependencies) used to execute this project. We want to install them using `pip install` command. This project is based on the [Udacity Github repository](https://github.com/udacity/nd013-c1-vision-starter), we can use this as reference too.
+``` 
+jupyter                       1.0.0
+jupyter-client                5.3.4
+jupyter-console               6.1.0
+jupyter-core                  4.6.2
+matplotlib                    3.4.1
+tensorboard                   2.4.1
+tensorboard-plugin-wit        1.8.0
+tensorflow                    2.4.1
+tensorflow-addons             0.12.1
+tensorflow-datasets           4.2.0
+tensorflow-estimator          2.4.0
+tensorflow-gpu                2.3.1
+tensorflow-hub                0.11.0
+tensorflow-metadata           0.28.0
+tensorflow-model-optimization 0.5.0
+```
+
 ### Model selection and training
 For the training process we use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augumentation, and so on. 
 

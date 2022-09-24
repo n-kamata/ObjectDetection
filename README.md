@@ -2,17 +2,17 @@
 
 ## Project overview
 
-This project is to develop object detection model to train a CNN (Convolutionnal Neural Network) using Waymo TFRecord. The model will detect objects and classify them, vehicle, pedestrien, and cyclists in an image. This development process includes data spliting for training and validation, train CNN model, evaluate results and adust parameters. In this project we use SSD Resnet 50 model as baseline, and try to improve this model using data argumentation and adjust optimizer.
+This project is to develop object detection model to train a CNN (Convolutionnal Neural Network) using Waymo TFRecord. The model will detect objects and classify them, vehicle, pedestrien, and cyclists in an image. This development process includes data spliting for training and validation, train CNN model, evaluate results and adust parameters. In this project I use SSD Resnet 50 model as baseline, and try to improve this model using data argumentation and adjust optimizer.
 Object detection is an important component of self driving car systems, because even if other modules, localization, planner, and contoller works, an incident can be caused by miss detection.
 
 ## Setup
 
 ### Data
-For this project, we are using data from the [Waymo Open dataset](https://waymo.com/open/). 
+For this project, I are using data from the [Waymo Open dataset](https://waymo.com/open/). 
 
 ### Data split
 
-The data we use for training, validation and testing is organized as follow:
+The data I use for training, validation and testing is organized as follow:
 ```
 /home/workspace/data/
     - train: contain the train data (86 files)
@@ -20,19 +20,19 @@ The data we use for training, validation and testing is organized as follow:
     - test - contains 3 files to test our model and create inference videos
 ```
 
-The `training` and `val` folder contains file that have been downsampled: we have selected one every 10 frames from 10 fps videos. The `testing` folder contains frames from the 10 fps video without downsampling. Note that (/home/workspace) is a location of where the files was extracted using git clone.
+The `training` and `val` folder contains file that have been downsampled: I have selected one every 10 frames from 10 fps videos. The `testing` folder contains frames from the 10 fps video without downsampling. Note that (/home/workspace) is a location of where the files was extracted using git clone.
 
-Using Waymo datasets, we have tried to split data following 90:10 ratio. Actually, 86 files in `training` and 10 files in `val` folders.
+Using Waymo datasets, I have tried to split data following 90:10 ratio. Actually, 86 files in `training` and 10 files in `val` folders.
 
 ### Visualization
-We use jupyter nootebook to visualize our analisys and test result with with Firefox or Google chrome.
+I use jupyter nootebook to visualize our analisys and test result with with Firefox or Google chrome.
 
 ```
 jupyter notebook --port 3002 --ip=0.0.0.0 --allow-root
 ```
 
 ### Development environment (Dependancy)
-The follwing is a list of the environment (dependencies) used to execute this project. We want to install them using `pip install` command. This project is based on the [Udacity Github repository](https://github.com/udacity/nd013-c1-vision-starter), we can use this as reference too.
+The follwing is a list of the environment (dependencies) used to execute this project. I want to install them using `pip install` command. This project is based on the [Udacity Github repository](https://github.com/udacity/nd013-c1-vision-starter), I can use this as reference too.
 ``` 
 jupyter                       1.0.0
 jupyter-client                5.3.4
@@ -52,23 +52,23 @@ tensorflow-model-optimization 0.5.0
 ```
 
 ### Model selection and training
-For the training process we use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augumentation, and so on. 
+For the training process I use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augumentation, and so on. 
 
-First, we want to choose API. Next, we download the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `/home/workspace/experiments/pretrained_model/`.
+First, I want to choose API. Next, I download the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `/home/workspace/experiments/pretrained_model/`.
 
-Once we choose API, we create config files and modify it to improve the model.
+Once I choose API, I create config files and modify it to improve the model.
 
 ```
 python edit_config.py --train_dir /home/workspace/data/waymo/train/ --eval_dir /home/workspace/data/waymo/val/ --batch_size 4 --checkpoint ./training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map label_map.pbtxt
 ```
 
-We create `pipeline.config`, we move the config to exeriment folder and rename `pipeline_new.config`.
+I create `pipeline.config`, I move the config to exeriment folder and rename `pipeline_new.config`.
 
 ```
 mv pipeline_new.config /home/workspace/experiments/reference/
 ```
 
-We train this model using this command.
+I train this model using this command.
 
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config
@@ -77,11 +77,11 @@ To evaluate the model, the following command is used.
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config --checkpoint_dir=experiments/reference/
 ```
-While testing, we can measure intermediate result using Tensorboard using Firefox or Google crhome.
+While testing, I can measure intermediate result using Tensorboard using Firefox or Google crhome.
 ```
 python -m tensorboard.main --logdir experiments/
 ```
-When we try other models or other `pipeline.config`, we create folders in `/home/workspace/experiment`. We saved data in the following structure. When we finished experiment, we save data like  `ex1`, `ex2`, ... When we execute commands fot train and evaluation, please replace `reference` with `ex*` folder.
+When I try other models or other `pipeline.config`, I create folders in `/home/workspace/experiment`. I saved data in the following structure. When I finished experiment, I save data like  `ex1`, `ex2`, ... When I execute commands fot train and evaluation, please replace `reference` with `ex*` folder.
 
 ```
 experiments/
@@ -99,9 +99,9 @@ experiments/
 ## Dataset
 
 ### Dataset analysis
-Before we start model training, we check ramdom images in the dataset.
-We extract ramdom 10 images and result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
-We can see the figure using this nootebook:
+Before I start model training, I check ramdom images in the dataset.
+I extract ramdom 10 images and result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
+I can see the figure using this nootebook:
 
 ```
 open jupytor nootebook
@@ -111,10 +111,10 @@ open jupytor nootebook
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png" width="400">
 Fig.1 An example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrien (green), and cyclist (blue).
 
-the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but we don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, we can say about dataset:
+the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but I don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, I can say about dataset:
 - Environment: Datasets icludes freeway, city, subburbe, and so on. Data balance looks good.
-- Weather: Datasets icludes day/night/foggy/rainy scenario. It is rarely to take data in bad weather condition, but we want enough data to make model robust. 
-- Classes: There are many object on road, we need not only vehicle/pedestrien/cyclist but also bus/truck/motorbcycle, and so on. We also want more data about cyclist. 
+- Iather: Datasets icludes day/night/foggy/rainy scenario. It is rarely to take data in bad Iather condition, but I want enough data to make model robust. 
+- Classes: There are many object on road, I need not only vehicle/pedestrien/cyclist but also bus/truck/motorbcycle, and so on. I also want more data about cyclist. 
 
 ### Cross validation
 
@@ -122,27 +122,49 @@ Cross validation is a method to separate dataset for train and evaluation, and m
 
 ## Training
 
-We choose reference model. We have change config and train/eval. The results are saved in this file structure:
+I choose reference model. I have change config and train/eval. The results are saved in this file structure:
 
-#### Reference experiment
-For this project, we decided to use SSD Resnet 50 as a baseline to make it easy to
+### Reference experiment
+For this project, I decided to use SSD Resnet 50 as a baseline to make it easy to
 study how to improve model. 
 
-This result of baseline is not good. The loss is greater than 10 and we want to improve this.
+This result of baseline is not good. The loss is greater than 10 and I want to improve this.
 
 I guess that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
 
- Fist, we tried data augmentation to improve learing efficiency and avoid overfitting. Next, we adjested leaning rate annealing.
+ Fist, I tried data augmentation to improve learing efficiency and avoid overfitting. Next, I adjested leaning rate annealing.
 
 ### Improve on the reference
-This project strategy is like this.
+
+The following is a result of defaut model used as reference.
+```
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.001
+Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.001
+Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.013
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.002
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.009
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.060
+Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.023
+INFO:tensorflow:    + Loss/localization_loss: 0.989506
+INFO:tensorflow:    + Loss/classification_loss: 0.712536
+INFO:tensorflow:    + Loss/regularization_loss: 47.339748
+INFO:tensorflow:    + Loss/total_loss: 49.041794
+```
+
+mAP, recall, and loss of default model is not enough for SDC project. In this project, I improved default model using following method.
 - Data aurmentation
 - Learning rate annealing
 
-We choose loss as metrics, and set target total loss 1.0 or less.
+I choose loss as metrics, and set target total loss 1.0 or less.
 
 #### Apply data Augmentation
-We apply data augmentation and train again. The default model uses `random_horizontal_flip` and `random_crop_image`, but this augmentation cannot modify original image and this result is as same as default images. We applied these data arugments. This project uses Tf Object Detection API, we can use [preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto) to add data augmentation. What we actually implemented is to modify `pipeline_new.config` file. The following is code we add to the file. We assumed that Augmentaion about color and black patch are necessary to improve the model.
+
+I apply data augmentation and train again. The default model uses `random_horizontal_flip` and `random_crop_image`, but this augmentation cannot modify original image and this result is as same as default images. I applied these data arugments. This project uses Tf Object Detection API, I can use [preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto) to add data augmentation. What I actually implemented is to modify `pipeline_new.config` file. The following is code I add to the file. I assumed that Augmentaion about color and black patch are necessary to improve the model.
 
 ```
   data_augmentation_options {
@@ -195,7 +217,7 @@ open jupytor nootebook
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/da_example.png" width="400">
 Fig2. Data augmentation result.
 
-Data augmentation is in Fig. 2. Compareing with Fig. 1, we can understand the difference.
+Data augmentation is in Fig. 2. Compareing with Fig. 1, I can understand the difference.
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png" width="400">
 
@@ -219,9 +241,9 @@ INFO:tensorflow:    + Loss/classification_loss: 0.774768
 INFO:tensorflow:    + Loss/regularization_loss: 5.014042
 INFO:tensorflow:    + Loss/total_loss: 6.968129
 ```
-Even if we apply the data augmentation loss is still large. mAP and recall can be improved.
+Even if I apply the data augmentation loss was still large. mAP and recall can be improved more.
 
-Next, we tried change optimizer.
+Next, I tried change optimizer.
 
 #### Optimizer and learning rate
 The following is a result using RMS optimizer instead of Ada optimizer.
@@ -252,7 +274,7 @@ INFO:tensorflow:    + Loss/total_loss: 1.638250
 
 Since learning rate is same and RMS loss gets better than Ada loss, RMS should be used than Ada optimizer.
 
-Next we adjust parameter about learing rate with RMS.
+Next I adjust parameter about learing rate with RMS.
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex3_rms_base/loss.png" width="400">
 
@@ -280,13 +302,13 @@ INFO:tensorflow:    + Loss/regularization_loss: 0.246372
 INFO:tensorflow:    + Loss/total_loss: 1.118462
  ```
 
-To check the detail, we also share figures in Tensorboard. 
+To check the detail, I also share figures in Tensorboard. 
 
-This figure shows that mAP result. This process was executed in workspace which Udacity provided and we wasn't able to plot mAP curve. [Issue report](https://knowledge.udacity.com/questions/802296)
+This figure shows that mAP result. This process was executed in workspace which Udacity provided and I wasn't able to plot mAP curve. [Issue report](https://knowledge.udacity.com/questions/802296)
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_precision.png" width="800">
 
-The following shows recall result, but we also wasn't able to plot recall curve.
+The following shows recall result, but I also wasn't able to plot recall curve.
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_recall.png" width="800">
 
@@ -298,9 +320,9 @@ The following shows loss.
 
 For the training loss, both localization and classification loss can converge.
 
-We restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
+I restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. I almost meet our goal.
 
-Here is a list we want to try to improve object detectiong performace.
+Here is a list I want to try to improve object detectiong performace.
 - Increase the number of data
 - Increase the number of scene data types
 - Increase the number of class types

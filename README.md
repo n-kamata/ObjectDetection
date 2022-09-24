@@ -151,11 +151,15 @@ INFO:tensorflow:    + Loss/total_loss: 49.041794
 ```
 
 
-The graph to show the detail is the following.
+I checked mAP, recall, and loss. This figure shows mAP. This process was executed in workspace which Udacity provided and I wasn't able to plot mAP curve. ([Issue report](https://knowledge.udacity.com/questions/802296))
+
+This is result of precision. At 2500 step, mAP is 0.0.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_precision.png" width="800">
 
+This is result of recall. At 2500 step, racall is 0.0.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_recall.png" width="800">
 
+This is result of loss. This figure was able to show loss.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_loss.png" width="800">
 
 mAP, recall, and loss of default model were not enough for SDC project. I guessed that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
@@ -217,9 +221,8 @@ open jupytor nootebook
 ```
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/da_example.png" width="400">
-Fig2. Data augmentation result.
 
-Data augmentation is in Fig. 2. Compareing with Fig. 1, I can understand the difference.
+Using this data, I train SSD model and result is the following. mAP and recall results couldn't be checked using jupyter, I focussed on total loss and leeaning rate.
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/loss.png" width="400">
 
@@ -306,7 +309,7 @@ INFO:tensorflow:    + Loss/total_loss: 1.118462
 
 To check the detail, I also share figures in Tensorboard. 
 
-This figure shows that mAP result. This process was executed in workspace which Udacity provided and I wasn't able to plot mAP curve. [Issue report](https://knowledge.udacity.com/questions/802296)
+This figure shows that mAP result. 
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ex3_precision.png" width="800">
 

@@ -125,7 +125,11 @@ We choose reference model. We have change config and train/eval. The results are
 For this project, we decided to use SSD Resnet 50 as a baseline to make it easy to
 study how to improve model. 
 
-This result of baseline is not good. The loss is greater than 10 and we want to improve this. Fist, we tried data augmentation to improve learing efficiency and avoid overfitting. Next, we adjested leaning rate annealing.
+This result of baseline is not good. The loss is greater than 10 and we want to improve this.
+
+I guess that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
+
+ Fist, we tried data augmentation to improve learing efficiency and avoid overfitting. Next, we adjested leaning rate annealing.
 
 ### Improve on the reference
 This project strategy is like this.
@@ -250,15 +254,13 @@ For the training loss, both localization and classification loss can converge.
 
 We restrict learing rate at begining of epoch, loss is restricted and it keeps around 1.0. we almost meet our goal.
 
-(TODO): Is the default model overfitting?
-
-I do not have experiment using different architectuire other than SSD, but we can try more using SSD.
+Here is a list we want to try to improve object detectiong performace.
 - Increase the number of data
 - Increase the number of scene data types
 - Increase the number of class types
 - Use different optimization
 - Use cross-validation
-- Others
+- Test other model than SSD
 
 ### Inference result
 

@@ -54,21 +54,21 @@ tensorflow-model-optimization 0.5.0
 ### Model selection and training
 For the training process I use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augmentation, and so on. 
 
-First, I want to choose API. Next, I download the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `/home/workspace/experiments/pretrained_model/`.
+First, I chose API. Next, I downloaded the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `/home/workspace/experiments/pretrained_model/`.
 
-Once I choose API, I create config files and modify it to improve the model.
+Once I chose model, I create config files and modify it to improve the model.
 
 ```
 python edit_config.py --train_dir /home/workspace/data/waymo/train/ --eval_dir /home/workspace/data/waymo/val/ --batch_size 4 --checkpoint ./training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map label_map.pbtxt
 ```
 
-I create `pipeline.config`, I move the config to experiment folder and rename `pipeline_new.config`.
+I created `pipeline.config`, I moved the config to experiment folder and rename `pipeline_new.config`.
 
 ```
 mv pipeline_new.config /home/workspace/experiments/reference/
 ```
 
-I train this model using this command.
+I trained this model using this command.
 
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config
@@ -77,11 +77,11 @@ To evaluate the model, the following command is used.
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config --checkpoint_dir=experiments/reference/
 ```
-While testing, I can measure intermediate result using Tensorboard using Firefox or Google chrome.
+While testing, I measured intermediate result using Tensorboard using Firefox or Google chrome.
 ```
 python -m tensorboard.main --logdir experiments/
 ```
-When I try other models or other `pipeline.config`, I create folders in `/home/workspace/experiment`. I saved data in the following structure. When I finished experiment, I save data like  `ex1`, `ex2`, ... When I execute commands fot train and evaluation, please replace `reference` with `ex*` folder.
+When I tried other models or other `pipeline.config`, I created folders in `/home/workspace/experiment`. I saved data in the following structure. When I finished experiment, I saved data like  `ex1`, `ex2`, ... When I execute commands fot train and evaluation, please replace `reference` with `ex*` folder.
 
 ```
 experiments/
@@ -99,9 +99,9 @@ experiments/
 ## Dataset
 
 ### Dataset analysis
-Before I start model training, I check random images in the dataset.
-I extract random 10 images and result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
-I can see the figure using this notebook:
+Before I started model training, I checked random images in the dataset.
+I extracted random 10 images and result was [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
+The figure can be checked using this notebook:
 
 ```
 open jupytor notebook
@@ -109,9 +109,9 @@ open jupytor notebook
 ```
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png" width="400">
-Fig.1 An example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrian (green), and cyclist (blue).
+This figure is an example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrian (green), and cyclist (blue).
 
-the mean of the number of vehicles in an image is 17.4, that of pedestrian is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but I don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, I can say about dataset:
+The mean of the number of vehicles in an image is 17.4, that of pedestrian is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but I don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, I can say about dataset:
 - Environment: Datasets includes freeway, city, suburban, and so on. Data balance looks good.
 - Weather: Datasets includes day/night/foggy/rainy scenario. It is rarely to take data in bad weather condition, but I want enough data to make model robust. 
 - Classes: There are many object on road, I need not only vehicle/pedestrien/cyclist but also bus/truck/motorcycle, and so on. I also want more data about cyclist. 
@@ -153,13 +153,13 @@ INFO:tensorflow:    + Loss/total_loss: 49.041794
 
 I checked mAP, recall, and loss. This figure shows mAP. This process was executed in workspace which Udacity provided and I wasn't able to plot mAP curve. ([Issue report](https://knowledge.udacity.com/questions/802296))
 
-This is result of precision. At 2500 step, mAP is 0.0.
+This is result of precision. The single plot is precision result at 2500 step and mAP is 0.0. 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_precision.png" width="800">
 
-This is result of recall. At 2500 step, racall is 0.0.
+This is result of recall. The single plot is recall result at 2500 step and recall is 0.0.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_recall.png" width="800">
 
-This is result of loss. This figure was able to show loss.
+This is result of loss. This figure was able to show loss curve during train process.
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/ref_loss.png" width="800">
 
 mAP, recall, and loss of default model were not enough for SDC project. I guessed that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
@@ -307,7 +307,7 @@ INFO:tensorflow:    + Loss/regularization_loss: 0.246372
 INFO:tensorflow:    + Loss/total_loss: 1.118462
  ```
 
-To check the detail, I also share figures in Tensorboard. 
+To check the detail, I also share figures in Tensorboard. As I have already mentioned, I wasn't able to plot precision and recall curve during train process, the single plot is shown in figure.
 
 This figure shows that mAP result. 
 

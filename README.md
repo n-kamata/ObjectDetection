@@ -25,7 +25,7 @@ The `training` and `val` folder contains file that have been downsampled: I have
 Using Waymo datasets, I have tried to split data following 90:10 ratio. Actually, 86 files in `training` and 10 files in `val` folders.
 
 ### Visualization
-I use jupyter nootebook to visualize our analisys and test result with with Firefox or Google chrome.
+I use jupyter notebook to visualize our analysis and test result with with Firefox or Google chrome.
 
 ```
 jupyter notebook --port 3002 --ip=0.0.0.0 --allow-root
@@ -52,7 +52,7 @@ tensorflow-model-optimization 0.5.0
 ```
 
 ### Model selection and training
-For the training process I use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augumentation, and so on. 
+For the training process I use Tensorflow object detection API. The default configuration is called `pipeline.config` and it contains information about training data, parameters, data augmentation, and so on. 
 
 First, I want to choose API. Next, I download the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `/home/workspace/experiments/pretrained_model/`.
 
@@ -62,7 +62,7 @@ Once I choose API, I create config files and modify it to improve the model.
 python edit_config.py --train_dir /home/workspace/data/waymo/train/ --eval_dir /home/workspace/data/waymo/val/ --batch_size 4 --checkpoint ./training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map label_map.pbtxt
 ```
 
-I create `pipeline.config`, I move the config to exeriment folder and rename `pipeline_new.config`.
+I create `pipeline.config`, I move the config to experiment folder and rename `pipeline_new.config`.
 
 ```
 mv pipeline_new.config /home/workspace/experiments/reference/
@@ -77,7 +77,7 @@ To evaluate the model, the following command is used.
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config --checkpoint_dir=experiments/reference/
 ```
-While testing, I can measure intermediate result using Tensorboard using Firefox or Google crhome.
+While testing, I can measure intermediate result using Tensorboard using Firefox or Google chrome.
 ```
 python -m tensorboard.main --logdir experiments/
 ```
@@ -99,22 +99,22 @@ experiments/
 ## Dataset
 
 ### Dataset analysis
-Before I start model training, I check ramdom images in the dataset.
-I extract ramdom 10 images and result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
-I can see the figure using this nootebook:
+Before I start model training, I check random images in the dataset.
+I extract random 10 images and result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/Exploratory%20Data%20Analysis.ipynb).
+I can see the figure using this notebook:
 
 ```
-open jupytor nootebook
+open jupytor notebook
 - Exploratory Data Analysis.ipynb
 ```
 
 <img src="https://github.com/n-kamata/ObjectDetection/blob/master/images/eda_example.png" width="400">
-Fig.1 An example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrien (green), and cyclist (blue).
+Fig.1 An example od exploratory data analysis. Bounding boxes are ground truth. The datasets has 3 classes, vehicle (colored red), pedestrian (green), and cyclist (blue).
 
-the mean of the numper of vehcles in an image is 17.4, that of pedestrien is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but I don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, I can say about dataset:
-- Environment: Datasets icludes freeway, city, subburbe, and so on. Data balance looks good.
-- Iather: Datasets icludes day/night/foggy/rainy scenario. It is rarely to take data in bad Iather condition, but I want enough data to make model robust. 
-- Classes: There are many object on road, I need not only vehicle/pedestrien/cyclist but also bus/truck/motorbcycle, and so on. I also want more data about cyclist. 
+the mean of the number of vehicles in an image is 17.4, that of pedestrian is 1.4, and that of cyclists is 0.1. It is rarely to see cyclists in the datasets, but I don't want to ignore the cyclists, because this project is for SDC, and ths system should be safe. Moreover, I can say about dataset:
+- Environment: Datasets includes freeway, city, suburban, and so on. Data balance looks good.
+- Weather: Datasets includes day/night/foggy/rainy scenario. It is rarely to take data in bad weather condition, but I want enough data to make model robust. 
+- Classes: There are many object on road, I need not only vehicle/pedestrien/cyclist but also bus/truck/motorcycle, and so on. I also want more data about cyclist. 
 
 ### Cross validation
 
@@ -130,7 +130,7 @@ study how to improve model.
 
 This result of baseline is not good. The loss is greater than 10 and I want to improve this.
 
-The following is a result of defaut model used as reference.
+The following is a result of default model used as reference.
 ```
 Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
 Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.001
@@ -164,13 +164,13 @@ This is result of loss. This figure was able to show loss.
 
 mAP, recall, and loss of default model were not enough for SDC project. I guessed that the default model could be overffitting, because the loss metrics did not converge to small values in training proceeded. 
 
-Fist, I tried data augmentation to improve learing efficiency and avoid overfitting. Next, I adjested leaning rate annealing.
+Fist, I tried data augmentation to improve learning efficiency and avoid overfitting. Next, I adjusted leaning rate annealing.
 
 I choose loss as metrics to adjust model, and set target total loss 1.0 or less.
 
 #### Apply data Augmentation
 
-I apply data augmentation and train again. The default model uses `random_horizontal_flip` and `random_crop_image`, but this augmentation cannot modify original image and this result is as same as default images. I applied these data arugments. This project uses Tf Object Detection API, I can use [preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto) to add data augmentation. What I actually implemented is to modify `pipeline_new.config` file. The following is code I add to the file. I assumed that Augmentaion about color and black patch are necessary to improve the model.
+I apply data augmentation and train again. The default model uses `random_horizontal_flip` and `random_crop_image`, but this augmentation cannot modify original image and this result is as same as default images. I applied these data augments. This project uses Tf Object Detection API, I can use [preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto) to add data augmentation. What I actually implemented is to modify `pipeline_new.config` file. The following is code I add to the file. I assumed that Augmentaion about color and black patch are necessary to improve the model.
 
 ```
   data_augmentation_options {
@@ -216,7 +216,7 @@ I apply data augmentation and train again. The default model uses `random_horizo
 This result is [here](https://github.com/n-kamata/ObjectDetection/blob/master/experiments/ex1_ada/result.txt).
 
 ```
-open jupytor nootebook
+open jupytor notebook
 - Exploratory Data Analysis.ipynb
 ```
 
